@@ -2,6 +2,22 @@ import configparser
 import os
 import sys
 
+def repo_find(path = ".", required = True):
+    path = os.path.realpath(path)
+
+    if os.path.isdir(os.path.join(path, ".git")):
+        return gitRepository(path)
+
+    parent = os.path.realpath(os.path.join(path, ".."))
+    if parent == path:
+        if required:
+            raise Exception("No git repository found")
+        else:
+            return None
+
+    # Recursive case
+    return repo_find(parent, required)
+
 
 def repo_path(repo, *path):
     ''' compute path under repo's gitdir '''

@@ -3,10 +3,8 @@ from sourceCode.gitInit import cmd_init
 
 import argparse
 import collections
-import hashlib
 import re
 import sys
-import zlib
 
 def configArgParser():
     argparser = argparse.ArgumentParser(description='Command Tracker')
