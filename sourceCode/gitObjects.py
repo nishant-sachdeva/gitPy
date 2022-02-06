@@ -30,3 +30,12 @@ class gitBlob(gitObject):
 
     def deserialize(self, data):
         self.blobData = data
+
+class gitTree(gitObject):
+    pass
+
+class gitCommit(gitObject):
+    pass
+
+class gitBlob(gitObject):
+    pass

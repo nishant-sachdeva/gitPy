@@ -1,4 +1,5 @@
 from gitInit import repo_file
+from gitObjects import gitBlob, gitCommit, gitTree, gitTag
 
 import zlib
 import hashlib
