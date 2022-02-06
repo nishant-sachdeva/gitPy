@@ -1,3 +1,6 @@
+from gitCommit import kvlm_parse, kvlm_serialize
+from gitTreeUtils import tree_parse, tree_serialize
+
 ### PARENT Git Object Class
 class gitObject(object):
     repo = None
@@ -32,10 +35,22 @@ class gitBlob(gitObject):
         self.blobData = data
 
 class gitTree(gitObject):
-    pass
+    fmt = b'tree'
+
+    def deserialize(self, data):
+        self.items = tree_parse(data)
+
+    def serialize(self):
+        return tree_serialize(self)
 
 class gitCommit(gitObject):
-    pass
+    fmt = b'commit'
+
+    def deserialize(self, data):
+        self.kvlm = kvlm_parse(data)
+    
+    def serialize(self):
+        return kvlm_serialize(self.kvlm)
 
 class gitBlob(gitObject):
     pass

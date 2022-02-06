@@ -3,7 +3,6 @@ from sourceCode.gitInit import cmd_init
 from sourceCode.gitCatFile import cmd_cat_file
 
 import argparse
-import collections
 import re
 import sys
 
@@ -42,8 +41,22 @@ def configArgParser():
                             action = "store_true",
                             help = "Actually write the object into the database")
     
-    argHashObject.add_argument("path",
-                            help = "Read object from <file>")
+    argHashObject.add_argument("path", help = "Read object from <file>")
+
+    
+    # LOG COMMAND
+    argLog = argSubParsers.add_parser("log", help = "Display history of a given commit")
+    argLog.add_argument("commit",default="HEAD", nargs = "?", help="Commit to start from")
+
+    # LS TREE COMMAND
+    argLsTree = argSubParsers.add_parser("ls-tree", help = "List the contents of a tree object")
+    argLsTree.add_argument("object", help="Tree to list")
+
+    # CHECKOUT COMMAND
+    argCheckout = argSubParsers.add_parser("checkout", help = "Checkout a commit insider of a directory")
+    
+    argCheckout.add_argument("commit", help="Commit to checkout")
+    argCheckout.add_argument("path", help="The EMPTY Directory to checkout on")
 
     return argparser
 
