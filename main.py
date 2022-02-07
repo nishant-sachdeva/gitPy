@@ -58,6 +58,25 @@ def configArgParser():
     argCheckout.add_argument("commit", help="Commit to checkout")
     argCheckout.add_argument("path", help="The EMPTY Directory to checkout on")
 
+    # SHOW-REF COMMAND
+    argShowRef = argSubParsers.add_parser("show-ref", help="List references.")
+
+    # TAG Command
+    argTag = argSubParsers.add_parser("tag", help="List and Create Tags")
+    argTag.add_argument("-a",
+                        action = "store_true",
+                        dest = "create tag object",
+                        help = "whether to create a tab object or not.")
+
+    argTag.add_argument("name",
+                        nargs = "?",
+                        help = "The new tag's name")
+    
+    argTag.add_argument("object",
+                        nargs = "?",
+                        default ="HEAD",
+                        help = "The object that the new tag will point to")
+
     return argparser
 
 

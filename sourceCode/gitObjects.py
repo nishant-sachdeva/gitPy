@@ -53,4 +53,13 @@ class gitCommit(gitObject):
         return kvlm_serialize(self.kvlm)
 
 class gitBlob(gitObject):
-    pass
+    fmt=b'blob'
+
+    def serialize(self):
+        return self.blobdata
+
+    def deserialize(self, data):
+        self.blobdata = data
+
+class gitTag(gitCommit):
+    fmt = b'tag'
